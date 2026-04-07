@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Mission: Finding Fiqa</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="galaxy-bg">
+        <div class="stars-container"></div>
+        <div class="nebula"></div>
+        
+        <div class="bg-planet planet-saturn">🪐</div>
+        <div class="bg-planet planet-mars">🔴</div>
+        <div class="bg-planet planet-earth">🌍</div>
+        <div class="bg-planet planet-moon">🌑</div>
+    </div>
+
+    <div id="spaceship-hero">
+        <div class="rocket-body">🚀</div>
+        <div class="engine-glow"></div>
+    </div>
+
+    <div id="container">
+        <div class="scene active" id="scene1">
+            <span class="planet-icon">🌍</span>
+            <h1>Mission: Finding Fiqa</h1>
+            <p>Initiating flight sequence. Coordinates locked on the most beautiful person in Asasi.</p>
+            <button onclick="nextPlanet(2)">Launch Rocket 🚀</button>
+        </div>
+
+        <div class="scene" id="scene2">
+            <span class="planet-icon">🛰️</span>
+            <h1>Objective: Deep Honesty</h1>
+            <div class="poetry-container">
+                <p>Umm, I’m sorry but I have to say this since we might not see each other again after asasi. I just want to be honest with you — I’ve liked you since the first day I saw you here.</p>
+                <p><strong>To be honest, I didn't have the courage to say this to you... but through this, I hope I can prove to you how serious I am about my feelings.</strong></p>
+                <p>I know we’re not that close, but I really do care about you and I’d like to know you better and be someone you can share things with.</p>
+            </div>
+            <button onclick="nextPlanet(3)">Continue Voyage... ☄️</button>
+        </div>
+
+        <div class="scene" id="scene3">
+            <span class="planet-icon">💎</span>
+            <h1>Planet: Reflections</h1>
+            <div class="poetry-container">
+                <p>I don’t even know how to explain it properly, but there’s just something about you that makes me feel different. I love it whenever you upload something on social media—it makes me blush, smile uncontrollably, and for a moment everything just feels lighter.</p>
+                <p>Deep down, I know you’re not mine… at least not yet. Still, I’ll try my hardest, because I really want you.</p>
+            </div>
+            <button onclick="nextPlanet(4)">Deep Space Scan... 📡</button>
+        </div>
+
+        <div class="scene" id="scene4">
+            <span class="planet-icon">💖</span>
+            <h1>Final Destination</h1>
+            <div class="poetry-container">
+                <p>If you ever give me a chance, I’ll take it and I will not waste it. I’ll do my best to be someone worth choosing, and I’ll make sure you won’t regret knowing me.</p>
+                <p>I’m willing to wait until you’re ready, Fiqa.</p>
+            </div>
+            <p style="margin-top: 20px; font-weight: bold; color: #00d4ff;">Will you give me that chance?</p>
+            <div style="margin-top: 20px; position: relative; min-height: 120px;">
+                <button id="yesBtn" onclick="celebrate()">Mission Success! ✅</button>
+                <button id="noBtn" onmouseover="moveButton()">Abort Mission ❌</button>
+            </div>
+        </div>
+    </div>
+
+    <audio id="mySong" loop preload="auto">
+        <source src="riskitall.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
