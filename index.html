@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Space Mission: Finding Fiqa</title>
+    <title>Mission: Fiqa</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,11 +11,8 @@
     <div class="galaxy-bg">
         <div class="stars-container"></div>
         <div class="nebula"></div>
-        
-        <div class="bg-planet planet-saturn">🪐</div>
-        <div class="bg-planet planet-mars">🔴</div>
-        <div class="bg-planet planet-earth">🌍</div>
-        <div class="bg-planet planet-moon">🌑</div>
+        <div class="bg-planet">🪐</div>
+        <div class="bg-planet" style="bottom:10%; left:10%; font-size:40px;">🔴</div>
     </div>
 
     <div id="spaceship-hero">
@@ -40,29 +37,28 @@
             <span class="planet-icon">🛰️</span>
             <h1>Objective: Deep Honesty</h1>
             <div class="poetry-container">
-                <p>Umm, I’m sorry but I have to say this since we might not see each other again after asasi. I just want to be honest with you — I’ve liked you since the first day I saw you here.</p>
-                <p><strong>To be honest, I didn't have the courage to say this to your face... but through this, I hope I can prove to you how serious I am about my feelings.</strong></p>
-                <p>I know we’re not that close, but I really do care about you and I’d like to know you better and be someone you can share things with.</p>
+                <p>Umm, I’m sorry but I have to say this since we might not see each other again. I’ve liked you since the first day I saw you here.</p>
+                <p><strong>To be honest, I didn't have the courage to say this to your face... but through this, I hope I can prove how serious I am.</strong></p>
+                <p>I really do care about you and I’d like to know you better and be someone you can share things with.</p>
             </div>
-            <button onclick="nextPlanet(3)">Continue Voyage... ☄️</button>
+            <button onclick="nextPlanet(3)">Continue... ☄️</button>
         </div>
 
         <div class="scene" id="scene3">
             <span class="planet-icon">💎</span>
             <h1>Planet: Reflections</h1>
             <div class="poetry-container">
-                <p>I don’t even know how to explain it properly, but there’s just something about you that makes me feel different. I love it whenever you upload something on social media—it makes me blush, smile uncontrollably, and for a moment everything just feels lighter.</p>
+                <p>There’s just something about you that makes me feel different. I love it whenever you upload something on social media—it makes me smile uncontrollably.</p>
                 <p>Deep down, I know you’re not mine… at least not yet. Still, I’ll try my hardest, because I really want you.</p>
             </div>
-            <button onclick="nextPlanet(4)">Deep Space Scan... 📡</button>
+            <button onclick="nextPlanet(4)">Final Destination 📡</button>
         </div>
 
         <div class="scene" id="scene4">
             <span class="planet-icon">💖</span>
-            <h1>Final Destination</h1>
+            <h1>The Final Choice</h1>
             <div class="poetry-container">
-                <p>If you ever give me a chance, I’ll take it and I will not waste it. I’ll do my best to be someone worth choosing, and I’ll make sure you won’t regret knowing me.</p>
-                <p>I’m willing to wait until you’re ready, Fiqa.</p>
+                <p>If you ever give me a chance, I’ll take it and I will not waste it. I’ll do my best to be someone worth choosing. I’m willing to wait until you’re ready, Fiqa.</p>
             </div>
             <p style="margin-top: 20px; font-weight: bold; color: #00d4ff;">Will you give me that chance?</p>
             <div style="margin-top: 20px; position: relative; min-height: 120px;">
@@ -75,12 +71,12 @@
     <div id="cat-delivery-cinematic" class="hidden">
         <div class="cat-pop-animation">
             <span style="font-size: 100px;">🐱</span>
-            <span class="bounce-flower-cinema">💐</span>
+            <span class="bounce-flower">💐</span>
         </div>
     </div>
 
-    <audio id="mySong" loop preload="auto">
-        <source src="Mhir.mp3" type="audio/mpeg">
+    <audio id="mySong" loop>
+        <source src="riskitall.mp3" type="audio/mpeg">
     </audio>
 
     <script src="script.js"></script>
