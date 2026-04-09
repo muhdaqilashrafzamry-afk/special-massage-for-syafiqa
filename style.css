@@ -1,50 +1,91 @@
 body {
-    background: #05070a; margin: 0; height: 100vh; overflow: hidden;
-    display: flex; justify-content: center; align-items: center;
-    font-family: 'Courier New', monospace; color: white;
+    background-color: #05070a; margin: 0; display: flex; justify-content: center; align-items: center;
+    height: 100vh; overflow: hidden; font-family: 'Courier New', monospace; color: #e0e0e0;
 }
-.galaxy-bg { position: fixed; width: 100%; height: 100%; z-index: 0; }
+
+/* GALAXY BACKGROUND */
+.galaxy-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
 .stars-container { position: absolute; width: 100%; height: 100%; }
 .star { position: absolute; background: white; border-radius: 50%; animation: twinkle var(--duration) infinite; }
-.nebula { position: absolute; width: 100%; height: 100%; background: radial-gradient(circle at 50% 50%, rgba(0,212,255,0.1), transparent); }
-
-.bg-planet { position: absolute; top: 10%; right: 10%; font-size: 60px; opacity: 0.2; animation: float 6s infinite; }
-
-#container {
-    background: rgba(10, 20, 30, 0.9); backdrop-filter: blur(15px);
-    padding: 30px; border-radius: 30px; border: 1px solid #00d4ff44;
-    text-align: center; max-width: 400px; width: 85%; z-index: 10; transition: all 1s ease;
+.nebula {
+    position: absolute; width: 100%; height: 100%;
+    background: radial-gradient(circle at 50% 50%, rgba(0, 212, 255, 0.1), transparent 60%),
+                radial-gradient(circle at 80% 80%, rgba(255, 77, 109, 0.1), transparent 60%);
 }
 
-#spaceship-hero { position: fixed; top: 50%; left: 5%; z-index: 100; transition: all 1.2s ease-in-out; }
-.rocket-body { font-size: 70px; }
-.engine-glow { width: 20px; height: 30px; background: #00d4ff; margin: -10px auto; filter: blur(8px); border-radius: 50%; animation: flicker 0.1s infinite; }
+.bg-planet { position: absolute; font-size: 50px; opacity: 0.25; animation: orbit 20s infinite linear; z-index: -1;}
+.planet-saturn { top: 10%; right: 10%; font-size: 80px; animation-duration: 45s; }
+.planet-mars { bottom: 15%; left: 10%; font-size: 40px; animation-duration: 35s; }
+.planet-earth { top: 70%; right: 5%; font-size: 60px; animation-duration: 55s; }
 
-/* WARP TRANSITION */
-#warp-beams { position: fixed; top: 50%; left: 5%; z-index: 99; transition: all 0.7s cubic-bezier(0.9, 0, 0.1, 1); }
-.beam { position: absolute; width: 6px; height: 200px; border-radius: 100px; filter: blur(4px); }
+/* CONTAINER UI */
+#container {
+    background: rgba(10, 15, 25, 0.95); backdrop-filter: blur(20px);
+    border: 1px solid rgba(0, 212, 255, 0.3); padding: 35px; border-radius: 35px;
+    text-align: center; max-width: 450px; width: 85%; z-index: 10;
+    box-shadow: 0 0 60px rgba(0, 0, 0, 0.9); transition: all 1s ease-in-out;
+}
+
+/* BUTTONS */
+button {
+    background: transparent; color: #00d4ff; border: 2px solid #00d4ff;
+    padding: 12px 28px; border-radius: 50px; cursor: pointer;
+    font-weight: bold; text-transform: uppercase; letter-spacing: 2px;
+    transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+button:hover { background: #00d4ff; color: #05070a; box-shadow: 0 0 25px #00d4ff; transform: scale(1.05); }
+#noBtn { position: absolute; left: 50%; transform: translateX(-50%); border-color: #444; color: #666; }
+
+/* ROCKET 🚀 (Positioned at 5% Left by default) */
+#spaceship-hero { position: fixed; top: 50%; left: 5%; z-index: 1000; transition: all 1.5s ease-in-out; }
+.rocket-body { font-size: 80px; filter: drop-shadow(0 0 10px #00d4ff); }
+.engine-glow { width: 30px; height: 40px; background: #00d4ff; margin: -10px auto 0; filter: blur(10px); border-radius: 50%; animation: flicker 0.1s infinite; }
+
+/* FLYING EFFECT (Backup, but we use warp) */
+.flying { left: 120% !important; transform: rotate(15deg); }
+.reset-pos { left: -30% !important; transition: none !important; }
+
+/* WARP BEAMS TRANSITION */
+#warp-beams {
+    position: fixed; top: 50%; left: 10%; width: 100%; height: 100%;
+    z-index: 900; display: flex; align-items: center; justify-content: center;
+    transition: all 0.6s cubic-bezier(0.9, 0, 0.1, 1);
+}
+.beam { position: absolute; width: 6px; height: 150px; border-radius: 50px; filter: blur(3px); }
 .beam-blue { background: #00d4ff; left: -15px; }
 .beam-pink { background: #ff4d6d; left: 15px; }
 
-.hidden { display: none !important; }
-.visible { display: block !important; opacity: 1 !important; }
-
-button {
-    background: transparent; color: #00d4ff; border: 2px solid #00d4ff;
-    padding: 10px 20px; border-radius: 20px; cursor: pointer; font-weight: bold;
+/* CINEMATIC CAT ELEMENT */
+#cat-delivery-cinematic {
+    position: fixed; display: flex; justify-content: center; align-items: center;
+    z-index: 1100; transition: all 0.5s ease;
 }
-#noBtn { position: absolute; left: 50%; transform: translateX(-50%); border-color: #444; color: #666; }
+.cat-pop-animation { position: relative; display: inline-block; animation: catPop Cinema Pop 1s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+.bounce-flower-cinema { position: absolute; top: -10px; right: -25px; font-size: 50px; animation: bounce 1s infinite; }
 
-.scene { display: none; }
-.active { display: block; animation: fadeIn 1s; }
+/* GLOBAL UTILITIES */
+.scene { display: none; opacity: 0; }
+.active { display: block; animation: fadeIn 1s forwards; }
+.planet-icon { font-size: 70px; display: block; margin-bottom: 20px; animation: float 4s infinite ease-in-out; }
+h1 { color: #00d4ff; font-size: 1.4rem; text-shadow: 0 0 10px #00d4ff44; }
 
-.poetry-container { background: rgba(255,255,255,0.05); padding: 15px; border-radius: 15px; text-align: left; font-size: 0.85rem; margin-bottom: 15px; }
+.poetry-container {
+    max-height: 220px; overflow-y: auto; padding: 15px; margin-bottom: 20px;
+    background: rgba(255, 255, 255, 0.05); border-radius: 15px; text-align: left; font-size: 0.85rem; line-height: 1.6;
+}
 
-#cat-delivery-cinematic { position: fixed; z-index: 101; transition: all 0.5s ease; }
-.bounce-flower { position: absolute; top: -10px; right: -20px; font-size: 40px; animation: bounce 1s infinite; }
+.hidden { display: none !important; }
+.visible { display: flex !important; opacity: 1 !important; }
 
-@keyframes flicker { 0%, 100% { opacity: 0.7; transform: scaleY(1); } 50% { opacity: 1; transform: scaleY(1.3); } }
-@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+/* ANIMATIONS */
+@keyframes flicker { 0%, 100% { opacity: 0.8; transform: scaleY(1); } 50% { opacity: 1; transform: scaleY(1.4); } }
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
 @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
-@keyframes twinkle { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
+@keyframes orbit { from { transform: rotate(0deg) translateX(30px) rotate(0deg); } to { transform: rotate(360deg) translateX(30px) rotate(-360deg); } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes twinkle { 0%, 100% { opacity: 0.3; } 50% { opacity: 0.8; } }
+@keyframes catPopCinemaPop {
+    0% { transform: scale(0) translateY(50px); opacity: 0; }
+    80% { transform: scale(1.1) translateY(-10px); opacity: 1; }
+    100% { transform: scale(1) translateY(0); }
+}

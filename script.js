@@ -1,14 +1,11 @@
-// GALAXY BACKGROUND (Tak berubah, ini background bintang)
+// GALAXY BACKGROUND (Tak berubah)
 function createStars() {
     const bg = document.querySelector('.stars-container');
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 120; i++) {
         const s = document.createElement('div');
         s.className = 'star';
-        s.style.width = Math.random() * 2.5 + 'px'; // Saiz bintang rambang
-        s.style.height = s.style.width;
-        s.style.left = Math.random() * 100 + '%';
-        s.style.top = Math.random() * 100 + '%';
-        // Animasi kelipan rambang
+        s.style.width = Math.random() * 2 + 'px'; s.style.height = s.style.width;
+        s.style.left = Math.random() * 100 + '%'; s.style.top = Math.random() * 100 + '%';
         s.style.setProperty('--duration', Math.random() * 3 + 2 + 's');
         bg.appendChild(s);
     }
@@ -17,51 +14,26 @@ createStars();
 
 const song = document.getElementById('mySong');
 
-// THE CINEMATIC WARP TRANSITION (TIKTOK STYLE)
+// THE CINEMATIC WARP TRANSITION (Tak berubah)
 function nextPlanet(sceneNumber) {
     const ship = document.getElementById('spaceship-hero');
     const container = document.getElementById('container');
     const warp = document.getElementById('warp-beams');
-    const beams = document.querySelectorAll('.beam');
+    const engine = document.querySelector('.engine-glow');
 
-    // Kita cuma buat warp speed dari Scene 1 ke Scene 2
     if (sceneNumber === 2) {
-        song.play().catch(e => console.log("Audio play blocked."));
-
-        // 1. Matikan enjin roket dan 'hilangkan' roket
-        const engine = document.querySelector('.engine-glow');
+        song.play().catch(e => console.log("User must interact first"));
         if(engine) engine.style.display = "none";
         ship.style.opacity = "0";
-
-        // 2. Tunjuk Warp Beams kat tempat roket berada
         warp.classList.remove('hidden');
-        warp.classList.add('visible');
-        
-        // Kita set beam tu duduk center kat roket
-        beams[0].style.left = "0"; // Blue beam center
-        beams[1].style.left = "0"; // Pink beam center
-
-        // 3. Beam terbang laju gila ke depan (Hyperspace Jump)
-        setTimeout(() => {
-            warp.style.left = "120%"; // Warp!
-        }, 100);
-
-        // 4. Fade out Scene 1
-        container.style.transition = "opacity 0.5s ease";
+        setTimeout(() => { warp.style.left = "150%"; }, 50);
         container.style.opacity = "0";
-
-        // 5. Fade in Scene 2 cepat-cepat lepas beam warp
         setTimeout(() => {
             showScene(2);
             container.style.opacity = "1";
-            
-            // Hilangkan warp beams
-            warp.classList.remove('visible');
-            setTimeout(() => { warp.classList.add('hidden'); }, 500);
-        }, 800);
-
+            warp.classList.add('hidden');
+        }, 700);
     } else {
-        // Transition biasa untuk scene lain (Next-Next)
         ship.classList.add('flying');
         setTimeout(() => {
             showScene(sceneNumber);
@@ -80,32 +52,31 @@ function showScene(sceneNumber) {
 
 function moveButton() {
     const btn = document.getElementById('noBtn');
-    // Gerakkan butang 'No' ke tempat rawak bila Fiqa cuba tekan
-    btn.style.left = Math.random() * (window.innerWidth - 150) + "px";
-    btn.style.top = Math.random() * (window.innerHeight - 150) + "px";
+    btn.style.left = Math.random() * 80 + "%";
+    btn.style.top = Math.random() * 80 + "%";
 }
 
-// THE CELEBRATION (CAT SURPRISE! - CLEAN ENDING)
+// THE TIKTOK-STYLE CELEBRATION! (V6: SEBIJI MACAM GAMBAR KAU BAGI)
 function celebrate() {
     const ship = document.getElementById('spaceship-hero');
     const container = document.getElementById('container');
-    const catCinema = document.getElementById('cat-delivery-cinematic');
+    const cat = document.getElementById('cat-delivery-cinematic');
     const engine = document.querySelector('.engine-glow');
 
     // 1. Matikan enjin roket
     if(engine) engine.style.display = "none";
 
-    // 2. Roket Landing Sikit ke Atas Container (Saiz asal, tak zoom)
-    // Kita posisikan roket tepat kat center-atas skrin.
+    // 2. Roket Landing Sikit ke Atas-Kiri (Saiz asal, tak zoom)
+    // Kita posisikan roket kat position (atas-kiri) skrin.
     ship.style.transition = "all 1s ease-in-out";
-    ship.style.left = "50%";
-    ship.style.top = "20%"; // Area pendaratan roket (atas container)
-    ship.style.transform = "translateX(-50%)"; // Center-kan
+    ship.style.left = "15%"; // Area landing roket (kiri)
+    ship.style.top = "15%"; // Area landing roket (atas)
+    ship.style.transform = "rotate(-10deg)"; // Pusing sikit macam landing
     ship.style.zIndex = "100"; // Duduk belakang container
 
-    // 3. Container turun sikit untuk bagi ruang kat roket & kucing
+    // 3. Container turun sikit ke bawah skrin (untuk bagi ruang)
     container.style.transition = "all 1s ease";
-    container.style.transform = "translateY(50px)"; 
+    container.style.transform = "translateY(100px)"; 
 
     // 4. Tukar content container kepada Mission Success (Mesej takkan ditutup)
     container.style.borderColor = "#ff4d6d";
@@ -113,22 +84,22 @@ function celebrate() {
     
     container.innerHTML = `
         <div class="active" style="animation: fadeIn 1s forwards;">
-            <h1 style="color: #ff4d6d; margin-top: 60px; font-size: 1.8rem; text-shadow: 0 0 10px #ff4d6d;">MISSION SUCCESS! ✅</h1>
+            <h1 style="color: #ff4d6d; margin-top: 50px; font-size: 1.8rem; text-shadow: 0 0 10px #ff4d6d;">MISSION SUCCESS! ✅</h1>
             <p style="font-size: 1.1rem; font-weight: bold;">"A gift from your personal astronaut."</p>
             <p>Thank you for giving me a chance, Fiqa! ❤️</p>
             <div style="margin-top: 20px;">
-                <span style="font-size: 25px;">⭐⭐⭐⭐⭐</span>
+                <span style="font-size: 30px;">⭐⭐⭐⭐⭐</span>
             </div>
         </div>
     `;
 
-    // 5. Kucing pop-up kat celah antara roket & mesej
+    // 5. Kucing astronaut keluar kat celah antara roket & mesej (Center)
     setTimeout(() => {
-        catCinema.classList.remove('hidden');
-        catCinema.style.left = "50%";
-        catCinema.style.top = "25%"; // Posisi kucing: bawah roket, atas mesej
-        catCinema.style.transform = "translate(-50%, 0)";
-        catCinema.classList.add('visible');
+        cat.classList.remove('hidden');
+        cat.style.left = "50%"; // Center
+        cat.style.top = "25%"; // Posisi kucing: bawah roket, atas mesej
+        cat.style.transform = "translate(-50%, 0)";
+        cat.classList.add('visible');
         
         createHearts(); // Hujan love keraian
     }, 1200);
@@ -136,7 +107,7 @@ function celebrate() {
 
 // Function tambahan untuk effect Heart keraian
 function createHearts() {
-    const container = document.querySelector('.stars-container');
+    const bg = document.querySelector('.stars-container');
     for (let i = 0; i < 40; i++) {
         setTimeout(() => {
             const h = document.createElement('div');
@@ -147,7 +118,7 @@ function createHearts() {
             h.style.fontSize = Math.random() * 20 + 15 + "px";
             h.style.animation = "fadeIn 1s forwards";
             h.style.zIndex = "1";
-            container.appendChild(h);
+            bg.appendChild(h);
         }, i * 100);
     }
 }
